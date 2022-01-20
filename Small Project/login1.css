@@ -14,7 +14,7 @@ body {
   padding: 0;
   margin: 0;
   background: url("https://wallpaperaccess.com/full/2435550.png") no-repeat
-    center center;
+  center center;
   background-size: cover;
 }
 
@@ -44,6 +44,7 @@ form {
   background: #fdf7fb;
   width: 400px;
   height: 470px;
+  border-radius: 20px;
   position: absolute;
   left: 50%;
   top: 50%;
