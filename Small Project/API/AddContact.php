@@ -1,4 +1,5 @@
 <?php
+
 	$inData = getRequestInfo();
 	
 	$UserID = $inData["UserID"];
@@ -17,8 +18,10 @@
 	} 
 	else
 	{
-		$stmt = $conn->prepare("INSERT into Contacts (UserID,FirstName,LastName,PhoneNumber,EmailAddress,HomeAddress,Birthday,Notes) VALUES(?,?,?,?,?,?,?,?)");
-		$stmt->bind_param("isssssss", $UserID, $FirstName, $LastName, $PhoneNumber, $EmailAddress, $HomeAddress, $Birthday, $Notes);
+		$stmt = $conn->prepare("INSERT into Contacts (UserID,FirstName,LastName,PhoneNumber,
+		EmailAddress,HomeAddress,Birthday,Notes) VALUES(?,?,?,?,?,?,?,?)");
+		$stmt->bind_param("isssssss", $UserID, $FirstName, $LastName, $PhoneNumber, $EmailAddress, 
+		$HomeAddress, $Birthday, $Notes);
 		$stmt->execute();
 		$stmt->close();
 		$conn->close();
@@ -38,7 +41,10 @@
 	
 	function returnWithError( $err )
 	{
-		$retValue = '{"error":"' . $err . '"}';
+		$retValue = 
+		'{
+			"error":"' . $err . '"
+		}';
 		sendResultInfoAsJson( $retValue );
 	}
 	
