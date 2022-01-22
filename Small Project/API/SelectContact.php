@@ -28,8 +28,8 @@
 		if( $row = $result->fetch_assoc()  )
 		{
 			returnWithInfo( $row['ID'], $FirstName, $LastName, $row['PhoneNumber'], 
-			$row['EmailAddress'], $row['HomeAddress'], $row['Birthday'], $row['Notes'],
-			$UserID);
+							$row['EmailAddress'], $row['HomeAddress'], $row['Birthday'], 
+							$row['Notes'], $UserID );
 		}
 		else
 		{
@@ -62,7 +62,7 @@
 	}
 
 	function returnWithInfo( $ID, $FirstName, $LastName, $PhoneNumber, $EmailAddress, 
-								$HomeAddress, $Birthday, $Notes, $UserID)
+								$HomeAddress, $Birthday, $Notes, $UserID )
 	{
 		$retValue = '{
 		"ID":' . $ID . ',
