@@ -20,8 +20,8 @@
 	} 
 	else
 	{
-		$stmt = $conn->prepare("SELECT * FROM Contacts WHERE UserID=? AND FirstName=? AND LastName=?");
-		$stmt->bind_param("iss", $UserID, $FirstName, $LastName);
+		$stmt = $conn->prepare("SELECT * FROM Contacts WHERE FirstName=? AND LastName=? AND UserID=?");
+		$stmt->bind_param("ssi", $FirstName, $LastName, $UserID);
 		$stmt->execute();
 		$result = $stmt->get_result();
 		
