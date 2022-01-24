@@ -14,7 +14,7 @@
 	}
 	else
 	{
-		$stmt = $conn->prepare("SELECT ID,UserName,FirstName,LastName FROM Users WHERE Username=? 
+		$stmt = $conn->prepare("SELECT ID,UserName,FirstName,LastName FROM Users WHERE UserName=? 
 								AND Password=?");
 		$stmt->bind_param("ss", $inData["UserName"], $inData["Password"]);
 		$stmt->execute();
