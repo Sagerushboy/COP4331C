@@ -2,10 +2,10 @@
 
 	$inData = getRequestInfo();
 	
-	$id = 0;
-	$firstName = "";
-	$lastName = "";
-	$userName = "";
+	$ID = 0;
+	$FirstName = "";
+	$LastName = "";
+	$UserName = "";
 
 	$conn = new mysqli("localhost", "SuperUser", "superPassword", "group25"); 	
 	if( $conn->connect_error )
@@ -16,7 +16,7 @@
 	{
 		$stmt = $conn->prepare("SELECT ID,UserName,FirstName,LastName FROM Users WHERE Username=? 
 								AND Password=?");
-		$stmt->bind_param("ss", $inData["login"], $inData["password"]);
+		$stmt->bind_param("ss", $inData["UserName"], $inData["Password"]);
 		$stmt->execute();
 		$result = $stmt->get_result();
 
@@ -55,14 +55,14 @@
 		sendResultInfoAsJson( $retValue );
 	}
 	
-	function returnWithInfo( $userName, $id, $firstName, $lastName )
+	function returnWithInfo( $UserName, $ID, $FirstName, $LastName )
 	{
 		$retValue = 
 		'{
-			"ID":' . $id . ',
-			"Username":"' . $userName . '",
-			"First Name":"' . $firstName . '",
-			"Last Name":"' . $lastName . '",
+			"ID":' . $ID . ',
+			"Username":"' . $UserName . '",
+			"First Name":"' . $FirstName . '",
+			"Last Name":"' . $LastName . '",
 			"error":""
 		}';
 		sendResultInfoAsJson( $retValue );
