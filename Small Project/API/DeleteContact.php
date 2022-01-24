@@ -2,9 +2,9 @@
 
 	$inData = getRequestInfo();
 	
-	$ID = $inData["ID"];
 	$FirstName = $inData["FirstName"];
 	$LastName = $inData["LastName"];
+	$UserID = $inData["UserID"];
 	
 	$conn = new mysqli("localhost", "SuperUser", "superPassword", "group25");
 	if ($conn->connect_error) 
@@ -13,8 +13,8 @@
 	} 
 	else
 	{
-		$stmt = $conn->prepare("DELETE FROM Contacts WHERE ID=? AND FirstName=? AND LastName=?");
-		$stmt->bind_param("iss", $ID, $FirstName, $LastName);
+		$stmt = $conn->prepare("DELETE FROM Contacts WHERE FirstName=? AND LastName=? AND UserID=?");
+		$stmt->bind_param("ssi", $FirstName, $LastName, $UserID);
 		$stmt->execute();
 		$stmt->close();
 		$conn->close();
