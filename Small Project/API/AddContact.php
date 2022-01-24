@@ -2,7 +2,6 @@
 
 	$inData = getRequestInfo();
 	
-	$UserID = $inData["UserID"];
 	$FirstName = $inData["FirstName"];
 	$LastName = $inData["LastName"];
 	$PhoneNumber = $inData["PhoneNumber"];
@@ -10,6 +9,7 @@
 	$HomeAddress = $inData["HomeAddress"];
 	$Birthday = $inData["Birthday"];
 	$Notes = $inData["Notes"];
+	$UserID = $inData["UserID"];
 	
 	$conn = new mysqli("localhost", "SuperUser", "superPassword", "group25");
 	if ($conn->connect_error) 
@@ -18,10 +18,10 @@
 	} 
 	else
 	{
-		$stmt = $conn->prepare("INSERT into Contacts (UserID,FirstName,LastName,PhoneNumber,
-								EmailAddress,HomeAddress,Birthday,Notes) VALUES(?,?,?,?,?,?,?,?)");
-		$stmt->bind_param("isssssss", $UserID, $FirstName, $LastName, $PhoneNumber, $EmailAddress, 
-		$HomeAddress, $Birthday, $Notes);
+		$stmt = $conn->prepare("INSERT into Contacts (FirstName,LastName,PhoneNumber,EmailAddress,
+								HomeAddress,Birthday,Notes, UserID) VALUES(?,?,?,?,?,?,?,?)");
+		$stmt->bind_param("sssssssi", $FirstName, $LastName, $PhoneNumber, $EmailAddress, 
+		$HomeAddress, $Birthday, $Notes, $UserID);
 		$stmt->execute();
 		$stmt->close();
 		$conn->close();
