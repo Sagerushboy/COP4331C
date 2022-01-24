@@ -1,0 +1,65 @@
+<!-- HTML for Log in Page Version 1 -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>LOGIN1</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../css/login.css" />
+
+    <style type="text/tailwindcss">
+      .input-field {
+        @apply h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:border-fuchsia-800 transition-all duration-300;
+      }
+
+      .button {
+        @apply cursor-pointer text-center bg-fuchsia-800 text-white flex justify-center items-center w-full py-2 rounded-md mt-3;
+      }
+
+      .active-button {
+        @apply mx-4 cursor-pointer underline text-fuchsia-800;
+      }
+
+      .inactive-button {
+        @apply mx-4 cursor-pointer hover:underline hover:text-fuchsia-800;
+      }
+    </style>
+  </head>
+  <body class="flex flex-col justify-center items-center">
+    <form id="form" class="bg-white py-8 px-16 rounded-md" method="post">
+      <h1 class="uppercase text-2xl md:text-4xl text-center text-fuchsia-800">
+        welcome back
+      </h1>
+
+      <section id="formType" class="flex justify-center items-center my-2">
+        <h3 class="inactive-button">Login</h3>
+        <h3 class="inactive-button">Signup</h3>
+      </section>
+
+      <div class="my-5">
+        <label for="username">Username</label>
+
+        <input
+          class="input-field"
+          id="username"
+          type="text"
+          autocomplete="off"
+          placeholder="Enter Username"
+        />
+      </div>
+
+      <div class="my-5">
+        <label for="password">Password</label>
+        <input
+          class="input-field"
+          id="password"
+          type="password"
+          autocapitalize="off"
+          placeholder="Enter Password"
+        />
+      </div>
+
+      <input class="button" id="button" type="submit" value="Login" />
+    </form>
+    <script type="text/javascript" src="../js/login.js" />
+  </body>
+</html>
