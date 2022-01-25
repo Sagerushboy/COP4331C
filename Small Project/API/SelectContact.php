@@ -55,7 +55,6 @@
 	{
 		$retValue = 
 		'{
-			"ID":0,
 			"error":"' . $err . '"
 		}';
 		sendResultInfoAsJson( $retValue );
