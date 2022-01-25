@@ -48,8 +48,6 @@
 	{
 		$retValue = 
 		'{
-			"ID":0,
-			"Username":"",
 			"error":"' . $err . '"
 		}';
 		sendResultInfoAsJson( $retValue );
