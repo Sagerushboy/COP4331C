@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>LOGIN1</title>
+    <title>Welcome to Contact Manager!</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="../css/login.css" />
 
@@ -31,11 +31,37 @@
       </h1>
 
       <section id="formType" class="flex justify-center items-center my-2">
-        <h3 class="inactive-button">Login</h3>
-        <h3 class="inactive-button">Signup</h3>
+        <button class="inactive-button">Login</button>
+        <button class="inactive-button">Signup</button>
       </section>
 
-      <div class="my-5">
+      <section id="userInfo" class="my-5 flex">
+        <div class="mr-2">
+          <label for="firstName">First Name</label>
+
+          <input
+            class="input-field"
+            id="firstName"
+            type="text"
+            autocomplete="off"
+            placeholder="Enter your first name"
+          />
+        </div>
+
+        <div class="ml-2">
+          <label for="lastName">Last Name</label>
+
+          <input
+            class="input-field"
+            id="lastName"
+            type="text"
+            autocomplete="off"
+            placeholder="Enter Username"
+          />
+        </div>
+      </section>
+
+      <section class="my-5">
         <label for="username">Username</label>
 
         <input
@@ -45,9 +71,9 @@
           autocomplete="off"
           placeholder="Enter Username"
         />
-      </div>
+      </section>
 
-      <div class="my-5">
+      <section class="my-5">
         <label for="password">Password</label>
         <input
           class="input-field"
@@ -56,7 +82,18 @@
           autocapitalize="off"
           placeholder="Enter Password"
         />
-      </div>
+      </section>
+
+      <!-- <section id="confirm" class="my-5">
+        <label for="confirmPasword">Confirm Password</label>
+        <input
+          class="input-field"
+          id="confirmPassword"
+          type="password"
+          autocapitalize="off"
+          placeholder="Confirm Password"
+        />
+      </section> -->
 
       <input class="button" id="button" type="submit" value="Login" />
     </form>
