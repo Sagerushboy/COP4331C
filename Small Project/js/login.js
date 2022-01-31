@@ -100,20 +100,10 @@ form.addEventListener("submit", async (e) => {
     headers: {
       "Content-Type": "application/json",
     },
+    body: JSON.stringify(body),
   });
 
   console.log(await temp.json());
-
-  // let call = await fetch(endpoint, {
-  //   method: "POST",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //   },
-  //   body: JSON.stringify(body),
-  // });
-
-  // let data = await call.json();
-  // console.log(data);
 
   // sessionStorage.setItem("cookie", JSON.stringify(formStuff));
 });
