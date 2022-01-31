@@ -25,7 +25,7 @@
     </style>
   </head>
   <body class="flex flex-col justify-center items-center">
-    <form id="form" class="bg-white py-8 px-16 rounded-md" method="post">
+    <main class="bg-white py-8 px-16 rounded-md">
       <h1 class="uppercase text-2xl md:text-4xl text-center text-fuchsia-800">
         welcome back
       </h1>
@@ -35,56 +35,57 @@
         <button class="inactive-button">Signup</button>
       </section>
 
-      <section id="userInfo" class="my-5 flex">
-        <div class="mr-2">
-          <label for="firstName">First Name</label>
+      <form id="form" class="" method="post">
+        <section id="userInfo" class="my-5 flex">
+          <div class="mr-2">
+            <label for="firstName">First Name</label>
+
+            <input
+              class="input-field"
+              id="firstName"
+              type="text"
+              autocomplete="off"
+              placeholder="Enter your first name"
+            />
+          </div>
+
+          <div class="ml-2">
+            <label for="lastName">Last Name</label>
+
+            <input
+              class="input-field"
+              id="lastName"
+              type="text"
+              autocomplete="off"
+              placeholder="Enter Username"
+            />
+          </div>
+        </section>
+
+        <section class="my-5">
+          <label for="username">Username</label>
 
           <input
             class="input-field"
-            id="firstName"
-            type="text"
-            autocomplete="off"
-            placeholder="Enter your first name"
-          />
-        </div>
-
-        <div class="ml-2">
-          <label for="lastName">Last Name</label>
-
-          <input
-            class="input-field"
-            id="lastName"
+            id="username"
             type="text"
             autocomplete="off"
             placeholder="Enter Username"
           />
-        </div>
-      </section>
+        </section>
 
-      <section class="my-5">
-        <label for="username">Username</label>
+        <section class="my-5">
+          <label for="password">Password</label>
+          <input
+            class="input-field"
+            id="password"
+            type="password"
+            autocapitalize="off"
+            placeholder="Enter Password"
+          />
+        </section>
 
-        <input
-          class="input-field"
-          id="username"
-          type="text"
-          autocomplete="off"
-          placeholder="Enter Username"
-        />
-      </section>
-
-      <section class="my-5">
-        <label for="password">Password</label>
-        <input
-          class="input-field"
-          id="password"
-          type="password"
-          autocapitalize="off"
-          placeholder="Enter Password"
-        />
-      </section>
-
-      <!-- <section id="confirm" class="my-5">
+        <!-- <section id="confirm" class="my-5">
         <label for="confirmPasword">Confirm Password</label>
         <input
           class="input-field"
@@ -95,8 +96,10 @@
         />
       </section> -->
 
-      <input class="button" id="button" type="submit" value="Login" />
-    </form>
+        <input class="button" id="button" type="submit" value="Login" />
+      </form>
+    </main>
+
     <script type="text/javascript" src="./js/login.js"></script>
   </body>
 </html>
