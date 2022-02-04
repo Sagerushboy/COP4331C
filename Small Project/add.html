@@ -1,0 +1,150 @@
+<!-- HTML for Add Contacts Page -->
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>AddContact</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="Add.css" /> 
+
+    <style type="text/tailwindcss">
+      .input-field {
+        @apply h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:border-fuchsia-800 transition-all duration-300;
+      }
+
+      .button {
+        @apply cursor-pointer text-center bg-fuchsia-800 text-white flex justify-center items-center w-full py-2 rounded-md mt-3;
+      }
+
+      .active-button {
+        @apply mx-4 cursor-pointer underline text-pink-500;
+      }
+
+      .inactive-button {
+        @apply mx-4 cursor-pointer hover:underline hover:text-fuchsia-800;
+      }
+
+      .inactive-nav {
+        @apply mx-2 py-4 px-2 font-semibold;
+      }
+
+      .active-nav {
+        @apply mx-2 py-4 px-2 underline font-semibold group-hover:text-fuchsia-800 group-hover:text-fuchsia-800 transition-all duration-200;
+      }
+    </style>
+  </head>
+  
+  <body class="flex flex-col">
+    <nav class="group text-black w-screen flex justify-between bg-white/40 hover:bg-white/100 transition-all duration-200"> 
+      <section class="flex justify-center items-center">
+        <a href="#" class="ml-3 py-4 px-2 font-semibold text-black text-xl group-hover:text-fuchsia-800">
+          Contact Manager
+        </a>
+
+        <a href="" class="inactive-nav">My Contacts</a> 
+        <a href="" class="active-nav">Add Contact</a> 
+      </section>
+  
+      <section class="flex items-center mr-3">
+        <a href="" class="py-2 px-2 font-medium "> Log Out</a>
+      </section>
+    </nav>
+
+
+    <main class="flex flex-col justify-center items-center h-full">
+      <article class="bg-white shadow-lg py-8 px-16 rounded-md">
+        <h1 class="uppercase text-2xl md:text-4xl text-center mb-3 text-fuchsia-800">
+          NEW CONTACT
+        </h1>
+
+        <form id="form" class="" method="post">
+
+          <section class="flex justify-center items-center my-2">
+            <div class="flex flex-col justify-left items-left">
+              <label for="firstname">First Name <span class="text-rose-500">*</span></label>
+              <input
+                class="input-field"
+                id="ContactFirstName"
+                type="text"
+                autocapitalize="off"
+                placeholder="Enter First Name"
+              />
+            </div>
+
+            <div class="flex flex-col justify-right ml-2">
+              <label for="lastname">Last Name <span class="text-rose-500">*</span></label>
+              <input
+                class="input-field"
+                id="ContactLastName"
+                type="text"
+                autocapitalize="off"
+                placeholder="Enter Last Name"
+              />
+            </div>
+          </section>
+
+          <section class="flex justify-center items-center my-2">
+            <div class="flex flex-col justify-left items-left">
+              <label for="ContactPhoneNumber">Phone Number</label>
+              <input
+                class="input-field"
+                id="ContactPhoneNumber"
+                type="text"
+                autocapitalize="off"
+                placeholder="Enter Phone Number"
+              />
+            </div>
+
+            <div class="flex flex-col justify-right ml-2">
+              <label for="ContactEmail">Email Address</label>
+              <input
+                class="input-field"
+                id="ContactEmail"
+                type="text"
+                autocapitalize="off"
+                placeholder="Enter Email Address"
+              />
+            </div>
+          </section>
+    
+
+            <div class="flex flex-col justify-right">
+              <label for="HomeAddress">Home Address</label>
+              <input
+                class="input-field"
+                id="ContactHomeAddress"
+                type="text"
+                autocapitalize="off"
+                placeholder="Enter Home Address"
+              />
+            </div>
+            <div class="flex flex-col justify-right">
+              <label for="Birthday">Birthday</label>
+              <input
+                class="input-field"
+                id="ContactBirthday"
+                type="text"
+                autocapitalize="off"
+                placeholder="Enter Birthday"
+              />
+            </div>
+          <div class="flex flex-col justify-right">
+            <label for="Notes">Notes</label>
+            <input
+              class="input-field"
+              id="ContactNotes"
+              type="text"
+              autocapitalize="off"
+              placeholder="Enter Notes"
+            />
+          </div>
+
+
+
+          <input class="button" id="button" type="submit" value="Save Contact" />
+        </form>
+      </article>
+    </main>
+    <script src="A.js"></script> 
+  </body>
+</html>
