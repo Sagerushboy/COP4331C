@@ -3,6 +3,7 @@
 	$inData = getRequestInfo();
 	$FirstName = $inData["FirstName"];
 	$LastName = $inData["LastName"];
+	$UserID = $inData["UserID"];
 	
 	$searchResults = "";
 	$searchCount = 0;
@@ -14,9 +15,9 @@
 	} 
 	else
 	{
-		$stmt = $conn->prepare("SELECT FirstName,LastName FROM Contacts WHERE FirstName OR LastName like ? and FirstName = ? OR LastName = ?");
+		$stmt = $conn->prepare("SELECT FirstName,LastName FROM Contacts WHERE (UserID=?) AND (FirstName OR LastName like ?) AND (FirstName = ? OR LastName = ?)");
 		$userName = "%" . $inData["search"] . "%";
-		$stmt->bind_param("sss", $userName, $inData["FirstName"], $inData["LastName"]);
+		$stmt->bind_param("isss", $UserID, $userName, $inData["FirstName"], $inData["LastName"]);
 		$stmt->execute();
 		
 		$result = $stmt->get_result();
