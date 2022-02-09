@@ -15,10 +15,22 @@
 	} 
 	else
 	{
-		$stmt = $conn->prepare("SELECT FirstName,LastName FROM Contacts WHERE (UserID=?) AND (FirstName OR LastName like ?) AND (FirstName = ? OR LastName = ?)");
-		$userName = "%" . $inData["search"] . "%";
-		$stmt->bind_param("isss", $UserID, $userName, $inData["FirstName"], $inData["LastName"]);
-		$stmt->execute();
+		if ($LastName == "")
+		{
+			$stmt = $conn->prepare("SELECT FirstName,LastName FROM Contacts WHERE (UserID=?) AND ((FirstName like ?) OR (LastName like ?)) ORDER BY FirstName ASC");
+			$FirstName = "%" . $FirstName . "%";
+			$stmt->bind_param("iss", $UserID, $FirstName, $FirstName);
+			$stmt->execute();
+		}
+		
+		else
+		{
+			$stmt = $conn->prepare("SELECT FirstName,LastName FROM Contacts WHERE (UserID=?) AND ((FirstName like ?) AND (LastName like ?)) ORDER BY FirstName ASC");
+			$FirstName = "%" . $FirstName . "%";
+			$LastName = "%" . $LastName . "%";
+			$stmt->bind_param("iss", $UserID, $FirstName, $LastName);
+			$stmt->execute();
+		}
 		
 		$result = $stmt->get_result();
 		
@@ -58,7 +70,7 @@
 	
 	function returnWithError( $err )
 	{
-		$retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
+		$retValue = '{"error":"' . $err . '"}';
 		sendResultInfoAsJson( $retValue );
 	}
 	
