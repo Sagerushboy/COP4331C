@@ -15,7 +15,7 @@
 	} 
 	else
 	{
-		$stmt = $conn->prepare("SELECT FirstName,LastName FROM Contacts WHERE UserID = ?");
+		$stmt = $conn->prepare("SELECT FirstName,LastName FROM Contacts WHERE UserID = ? ORDER BY FirstName");
 		$stmt->bind_param("i", $UserID);
 		$stmt->execute();
 		
