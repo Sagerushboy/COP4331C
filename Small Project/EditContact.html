@@ -43,11 +43,11 @@
   <body class="flex flex-col">
     <nav class="group text-black w-screen flex justify-between bg-white/80 hover:bg-white/100 transition-all duration-200"> 
       <section class="flex justify-center items-center">
-        <a href="/dashboard.html" class="ml-3 py-4 px-2 font-semibold text-black text-2xl group-hover:text-orange-600">
+        <a href="/Dashboard.html" class="ml-3 py-4 px-2 font-semibold text-black text-2xl group-hover:text-orange-600">
           KIT
         </a>  
 
-        <a href="/dashboard.html" class="inactive-nav">My Contacts</a> 
+        <a href="/Dashboard.html" class="inactive-nav">My Contacts</a> 
         <a href="/AddContact.html" class="active-nav">Add Contact</a> 
       </section>
   
@@ -176,7 +176,7 @@
       }
       
       CancelButton.addEventListener("click", () => {
-        window.location.href = "dashboard.html";
+        window.location.href = "Dashboard.html";
         sessionStorage.removeItem("editName")
       });
 
@@ -226,7 +226,7 @@
           return;
         }
 
-        window.location.href = "/dashboard.html"
+        window.location.href = "/Dashboard.html"
         sessionStorage.removeItem("editName")
 
       });
