@@ -1,8 +1,8 @@
-<!-- HTML for Log in Page Version 1 -->
+<!-- HTML for Log in Page -->
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Welcome to Contact Manager!</title>
+    <title>WELCOMEPAGE</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="./css/login.css" />
 
@@ -33,6 +33,12 @@
       <section id="formType" class="flex justify-center items-center my-2">
         <button class="inactive-button">Login</button>
         <button class="inactive-button">Signup</button>
+      </section>
+
+      <section id="messageBox" class="hidden justify-center items-center my-2">
+        <h1 class="bg-fuchsia-100 text-center text-fuchsia-800 py-2">
+          Registration failed
+        </h1>
       </section>
 
       <form id="form" class="" method="post">
@@ -85,16 +91,15 @@
           />
         </section>
 
-        <!-- <section id="confirm" class="my-5">
-        <label for="confirmPasword">Confirm Password</label>
-        <input
-          class="input-field"
-          id="confirmPassword"
-          type="password"
-          autocapitalize="off"
-          placeholder="Confirm Password"
-        />
-      </section> -->
+        <section id="confirm" class="w-full">
+          <input
+            class="input-field"
+            id="confirmPassword"
+            type="password"
+            autocapitalize="off"
+            placeholder="Confirm Password"
+          />
+        </section>
 
         <input class="button" id="button" type="submit" value="Login" />
       </form>

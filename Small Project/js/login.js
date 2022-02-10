@@ -1,15 +1,26 @@
 const form = document.getElementById("form");
 const button = document.getElementById("button");
 const formType = document.getElementById("formType");
-let baseUrl = "http://group25.xyz/LAMPAPI";
+let baseUrl = "http://group25.xyz/API";
 let endpoint = "";
 
-const usernameBox = document.getElementById("username");
-const passwordBox = document.getElementById("password");
+const username = document.getElementById("username");
+const password = document.getElementById("password");
+const confirmBox = document.getElementById("confirm");
+const confirmPassword = document.getElementById("confirmPassword");
+const messageBox = document.getElementById("messageBox");
 
 const personalInfo = document.getElementById("userInfo");
-const firstNameBox = document.getElementById("firstName");
-const lastNameBox = document.getElementById("lastName");
+const firstName = document.getElementById("firstName");
+const lastName = document.getElementById("lastName");
+
+function showMessageBox(msg) {
+  if (messageBox.className.includes("hidden")) {
+    messageBox.classList.toggle("hidden");
+  }
+
+  messageBox.getElementsByTagName("h1")[0].innerHTML = msg;
+}
 
 function setSignType(type) {
   const buttons = formType.getElementsByTagName("button");
@@ -20,6 +31,7 @@ function setSignType(type) {
 
     if (!personalInfo.classList.contains("hidden")) {
       personalInfo.classList.toggle("hidden");
+      confirmBox.classList.toggle("hidden");
     }
 
     endpoint = `${baseUrl}/Login.php`;
@@ -31,6 +43,7 @@ function setSignType(type) {
 
     if (personalInfo.classList.contains("hidden")) {
       personalInfo.classList.toggle("hidden");
+      confirmBox.classList.toggle("hidden");
     }
 
     endpoint = `${baseUrl}/SignUp.php`;
@@ -50,14 +63,13 @@ window.onload = (e) => {
   e.preventDefault();
   console.log("Window loaded");
 
-  let data = sessionStorage.getItem("cookie");
+  let data = JSON.parse(sessionStorage.getItem("userInfo"));
+
   if (data === null || data === undefined) {
     console.log("No data");
     setSignType(false);
   } else {
     console.log("Data found");
-    console.log(JSON.parse(data));
-
     setSignType(true);
   }
 };
@@ -66,36 +78,55 @@ form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   console.log("Submitted form");
+  // document.getElementById("incorrectLogin").style.visibility = 'hidden';
 
   if (button.value.toLowerCase() === "login") {
-    if (usernameBox.value.trim() === "" || passwordBox.value.trim() === "") {
+    if (username.value.trim() === "" || password.value.trim() === "") {
       console.log("User/pass is empty");
+
+      let error = "";
+      if (username.value.trim() === "" && password.value.trim() === "") {
+        error = "Username and password";
+      } else {
+        error = username.value.trim() === "" ? "Username" : "Password";
+      }
+
+      showMessageBox(`${error} is empty.`);
       return;
     }
   } else {
     let empty = [
-      usernameBox.value,
-      passwordBox.value,
-      firstNameBox.value,
-      lastNameBox.value,
-    ].every((item) => item.trim() === "");
+      username.value,
+      password.value,
+      firstName.value,
+      lastName.value,
+      confirmPassword.value,
+    ].some((item) => item.trim() === "");
 
     if (empty) {
       console.log("Empty item(s) in form");
+      showMessageBox("Empty item(s) in form");
+      return;
+    }
+
+    if (password.value !== confirmPassword.value) {
+      console.log("Wrong passwords");
+      showMessageBox("Passwords do not match");
+
       return;
     }
   }
 
   let body = {
-    UserName: usernameBox.value,
-    Password: passwordBox.value,
-    FirstName: firstNameBox.value,
-    LastName: lastNameBox.value,
+    UserName: username.value,
+    Password: password.value,
+    FirstName: firstName.value,
+    LastName: lastName.value,
   };
 
   console.log(endpoint);
 
-  let temp = await fetch(endpoint, {
+  let response = await fetch(endpoint, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -103,7 +134,23 @@ form.addEventListener("submit", async (e) => {
     body: JSON.stringify(body),
   });
 
-  console.log(await temp.json());
+  let data = await response.json();
 
-  // sessionStorage.setItem("cookie", JSON.stringify(formStuff));
+  if (data.error) {
+    console.log("There was an error with the api call");
+    console.log(data.error);
+
+    showMessageBox(
+      `${button.innerHTML === "Login" ? "Login" : "Registration"} failed.`
+    );
+
+    return;
+  } else {
+    showMessageBox(
+      `${button.innerHTML === "Login" ? "Login" : "Registration"} successful.`
+    );
+  }
+
+  sessionStorage.setItem("userInfo", JSON.stringify(data));
+  window.location.href = "/dashboard.html";
 });
