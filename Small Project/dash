@@ -87,7 +87,7 @@
         KIT
       </a>
 
-      <a href="/Dashboard.html" class="text-xl active-div">My Contacts</a>
+      <a href="/dashboard.html" class="text-xl active-div">My Contacts</a>
       <a href="/AddContact.html" class="text-xl inactive-div">Add Contact</a>
     </section>
 
