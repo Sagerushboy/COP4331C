@@ -8,25 +8,25 @@
 
     <style type="text/tailwindcss">
       .input-field {
-        @apply h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:border-fuchsia-800 transition-all duration-300;
+        @apply h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:border-orange-600 transition-all duration-300;
       }
 
       .button {
-        @apply cursor-pointer text-center bg-fuchsia-800 text-white flex justify-center items-center w-full py-2 rounded-md mt-3;
+        @apply cursor-pointer text-center bg-orange-600 text-white flex justify-center items-center w-full py-2 rounded-md mt-3;
       }
 
       .active-button {
-        @apply mx-4 cursor-pointer underline text-fuchsia-800;
+        @apply mx-4 cursor-pointer underline text-orange-600;
       }
 
       .inactive-button {
-        @apply mx-4 cursor-pointer hover:underline hover:text-fuchsia-800;
+        @apply mx-4 cursor-pointer hover:underline hover:text-orange-600;
       }
     </style>
   </head>
   <body class="flex flex-col justify-center items-center">
     <main class="bg-white py-8 px-16 rounded-md">
-      <h1 class="uppercase text-2xl md:text-4xl text-center text-fuchsia-800">
+      <h1 class="uppercase text-2xl md:text-4xl text-center text-orange-600">
         welcome back
       </h1>
 
@@ -34,11 +34,9 @@
         <button class="inactive-button">Login</button>
         <button class="inactive-button">Signup</button>
       </section>
-
-      <section id="messageBox" class="hidden justify-center items-center my-2">
-        <h1 class="bg-fuchsia-100 text-center text-fuchsia-800 py-2">
-          Registration failed
-        </h1>
+      
+      <section id ="messageBox" class="hidden justify-center items-center my-2">
+        <h1 class="bg-orange-100 text-center text-orange-700 py-2">Registration failed</h1>
       </section>
 
       <form id="form" class="" method="post">
@@ -90,7 +88,7 @@
             placeholder="Enter Password"
           />
         </section>
-
+      
         <section id="confirm" class="w-full">
           <input
             class="input-field"
@@ -102,6 +100,7 @@
         </section>
 
         <input class="button" id="button" type="submit" value="Login" />
+  
       </form>
     </main>
 
