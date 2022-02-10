@@ -2,6 +2,7 @@
 
 	$inData = getRequestInfo();
 	
+	$ID = $inData["ID"];
 	$FirstName = $inData["FirstName"];
 	$LastName = $inData["LastName"];
 	$PhoneNumber = $inData["PhoneNumber"];
@@ -9,7 +10,7 @@
 	$HomeAddress = $inData["HomeAddress"];
 	$Birthday = $inData["Birthday"];
 	$Notes = $inData["Notes"];
-	$ID = $inData["ID"];
+	$UserID = $inData["UserID"];
 	
 	$conn = new mysqli("localhost", "SuperUser", "superPassword", "group25");
 	if ($conn->connect_error) 
@@ -18,9 +19,9 @@
 	} 
 	else
 	{
-		$stmt = $conn->prepare("UPDATE Contacts SET FirstName=?,LastName=?,PhoneNumber=?,EmailAddress=?, HomeAddress=?, Birthday=?,Notes=? WHERE ID =?");
-		$stmt->bind_param("sssssssi", $FirstName, $LastName, $PhoneNumber, $EmailAddress, 
-		$HomeAddress, $Birthday, $Notes, $ID);
+		$stmt = $conn->prepare("UPDATE Contacts SET FirstName=?,LastName=?,PhoneNumber=?,EmailAddress=?,HomeAddress=?,Birthday=?,Notes=? WHERE (ID =? AND UserID =?)");
+		$stmt->bind_param("sssssssii", $FirstName, $LastName, $PhoneNumber, $EmailAddress, 
+		$HomeAddress, $Birthday, $Notes, $ID, $UserID);
 		$stmt->execute();
 		$stmt->close();
 		$conn->close();
