@@ -266,6 +266,11 @@
         if (data["Notes"]) ContactNotes.value = data["Notes"]
 
         contactID = data["ID"]
+
+				document.getElementById("logoutBtn").addEventListener("click", () => {
+					sessionStorage.removeItem("userInfo");
+					window.location.href = "/";
+				})
       }
     </script> 
   </body>
