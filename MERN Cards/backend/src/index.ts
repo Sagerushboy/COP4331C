@@ -2,7 +2,7 @@ import express from "express";
 import dotenv from 'dotenv';
 import cors from 'cors';
 import { connect, } from "mongoose";
-import cards from './modules/cards';
+import cards from './api/cards';
 
 const env = dotenv.config();
 
@@ -12,8 +12,6 @@ app.use(express.json());
 app.use(cors());
 
 app.use("/cards", cards);
-
-// mongodb+srv://walrushman:<password>@cluster0.zbtiv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
 
 const mongoURI: string =
 	`mongodb+srv://${process.env.ADDRESS}`;
@@ -32,5 +30,7 @@ connect(mongoURI, {
 		console.log("Error with db")
 		console.error(err)
 	});
+
+
 
 app.listen(8080, () => console.log("Server running on port 8080"));

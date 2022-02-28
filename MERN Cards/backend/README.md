@@ -6,7 +6,7 @@ Make sure to run `npm install -D` so that you install of the packages including 
 
 After doing that, you will need to create a file titled `.env` in the same folder that you have the `package-lock.json` file.
 
-Here's what must be put in the file:
+Here's what must be put in the file (check discord for the actual details):
 
 ```
 USERNAME={db_username}
