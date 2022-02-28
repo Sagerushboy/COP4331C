@@ -105,19 +105,39 @@ let cardList =
 		'Babe Ruth'
 	];
 
-router.post("/add", (req, res) => {
-	const { username, card } = req.body;
+router.post("/login", (req, res) => {
+	const { username } = req.body;
 	// TEMP FOR LOCAL TESTING.
-
-	cardList.push(card);
 
 	if (username == "alex") {
 		res.status(200).json({ id: 12, error: "" });
 	} else {
 		res.status(400).json({ error: "Invalid user" });
 	}
+});
 
-})
+router.post("/add", (req, res) => {
+	const { name } = req.body;
+	// TEMP FOR LOCAL TESTING.
 
+	cardList.push(name);
+
+	res.status(200);
+});
+
+router.get("/search", (req, res) => {
+	console.log("Search running")
+	const { name } = req.query;
+	// TEMP FOR LOCAL TESTING.
+
+	if (name == null || name == undefined) return;
+
+	const regex = new RegExp(name as string, "i");
+
+	let newList = cardList.filter(item => item.match(regex));
+	res.json({
+		cards: newList
+	});
+});
 
 export default router;
