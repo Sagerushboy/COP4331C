@@ -10,16 +10,19 @@ let app = express();
 app.use(express.json());
 app.use(cors());
 
+// mongodb+srv://walrushman:<password>@cluster0.zbtiv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+
 const mongoURI: string =
-	`mongodb://${process.env.ADDRESS}:${process.env.PORT}`;
+	`mongodb+srv://${process.env.ADDRESS}`;
 
 connect(mongoURI, {
 	auth: {
 		username: process.env.USERNAME,
 		password: process.env.PASSWORD
 	},
-	authSource: "admin",
 	dbName: process.env.DATABASE,
+	retryWrites: true,
+	w: "majority"
 })
 	.then(() => console.log("Mongodb connected"))
 	.catch((err) => {

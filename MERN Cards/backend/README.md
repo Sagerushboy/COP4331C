@@ -11,7 +11,6 @@ Here's what must be put in the file:
 ```
 USERNAME={db_username}
 PASSWORD={password_to_db}
-PORT={db_port}
 ADDRESS={address_of_db}
 DATABASE={db_name}
 ```
