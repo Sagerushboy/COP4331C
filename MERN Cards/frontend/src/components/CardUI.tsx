@@ -13,15 +13,13 @@ export default function CardUI() {
   const addCard = async (event: any) => {
     event.preventDefault();
 
-    await fetch("http://localhost:8080/cards/add", {
+    fetch("http://localhost:8080/cards/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ name: addName }) as any,
-    });
-
-    setAddName("");
+    }).then(() => setAddName(""));
   };
 
   const searchCard = async (event: any) => {
@@ -43,11 +41,7 @@ export default function CardUI() {
     const data = await resp.json();
     let results = data.cards.map((item: Card) => item.name);
 
-    console.log(data, results);
-
     setCards(results);
-
-    console.log(cards);
   };
 
   return (

@@ -21,6 +21,18 @@ router.post("/add", async (req, res) => {
 	const { name } = req.body;
 	// TEMP FOR LOCAL TESTING.
 
+	if (name === "") {
+		res.status(400);
+		return;
+	}
+
+	let search = await Card.find({ name }).exec();
+
+	if (search.length > 0) {
+		res.status(400);
+		return;
+	}
+
 	let newCard = new Card({ name });
 	await newCard.save();
 
@@ -32,7 +44,9 @@ router.get("/search", async (req, res) => {
 	const { name } = req.query;
 	// TEMP FOR LOCAL TESTING.
 
-	if (name ?? true) return;
+	console.log(name);
+
+	if (name == null || name == undefined) return;
 
 	let cards = [];
 
