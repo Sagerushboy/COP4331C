@@ -5,18 +5,18 @@ import { connect, } from "mongoose";
 import cards from './api/cards';
 import User from "./models/User";
 
-const env = dotenv.config();
+const env = dotenv.config(); // env variables
 
-let app = express();
+let app = express(); // api library
 
-app.use(express.json());
-app.use(cors());
+app.use(express.json()); // allow for sending json
+app.use(cors()); // allow for cors
 
-app.use("/cards", cards);
+app.use("/cards", cards); // all routes will be /cards/{route}
 
-const mongoURI: string =
-	`mongodb+srv://${process.env.ADDRESS}`;
+const mongoURI: string = `mongodb+srv://${process.env.ADDRESS}`;
 
+// connection to mongodb based off env and url
 connect(mongoURI, {
 	auth: {
 		username: process.env.USERNAME,
@@ -26,12 +26,14 @@ connect(mongoURI, {
 	retryWrites: true,
 	w: "majority"
 })
-	.then(() => console.log("Mongodb connected"))
+	.then(() => console.log("Mongodb connected")) // good
 	.catch((err) => {
+		// bad
 		console.log("Error with db")
 		console.error(err)
 	});
 
+// add alex user if don't exist
 const addUser = async () => {
 	let res = await User.find({ username: "alex" }).exec();
 
@@ -46,5 +48,8 @@ const addUser = async () => {
 	}
 }
 
+// adding alex user
 addUser().catch(() => console.log("Error with adding new temp user"));
+
+// launching server
 app.listen(8080, () => console.log("Server running on port 8080"));

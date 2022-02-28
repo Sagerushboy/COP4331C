@@ -5,18 +5,18 @@ export default function Login() {
 
   const doLogin = async (event: any) => {
     event.preventDefault();
-    // alert("doIt()");
 
     let resp = await fetch("http://localhost:8080/cards/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ ...loginInfo, card: "deez" }) as any,
+      body: JSON.stringify({ ...loginInfo }) as any,
     });
 
     let data = await resp.json();
 
+    // bad resp log
     if (resp.status !== 200) {
       const { error } = data;
       console.error(error);
@@ -25,8 +25,9 @@ export default function Login() {
 
     console.log(data);
 
+    // save info and redirect
     localStorage.setItem("data", JSON.stringify(data));
-    window.location.href = "/cards";
+    window.location.href = "/cards"; // not the right way to redirect with react-router-dom
   };
 
   return (

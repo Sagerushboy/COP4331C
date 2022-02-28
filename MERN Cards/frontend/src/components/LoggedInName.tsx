@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 export default function LoggedInName() {
   const [data, setData] = useState({ firstName: "", lastName: "" });
 
+  // on load run this inner function;
   useEffect(() => {
     const info = JSON.parse(localStorage.getItem("data") ?? "");
     const { firstName, lastName } = info.data;

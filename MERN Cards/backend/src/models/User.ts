@@ -8,4 +8,4 @@ const UserSchema = new Schema({
 
 const User = model('User', UserSchema);
 
-export default User;
+export default User;  // exporting User model for finding and other operations

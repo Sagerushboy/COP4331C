@@ -8,7 +8,6 @@ export default function CardUI() {
   const [cards, setCards] = useState([]);
   const [searchName, setSearchName] = useState("");
   const [addName, setAddName] = useState("");
-  // const [errorMessage, setErrorMessage] = useState("");
 
   const addCard = async (event: any) => {
     event.preventDefault();
@@ -19,12 +18,13 @@ export default function CardUI() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ name: addName }) as any,
-    }).then(() => setAddName(""));
+    });
   };
 
   const searchCard = async (event: any) => {
     event.preventDefault();
 
+    // create query link for api call
     let url =
       "http://localhost:8080/cards/search?" +
       new URLSearchParams({
@@ -62,8 +62,11 @@ export default function CardUI() {
         Search Card
       </button>
       <br />
+      {/* Ignoring this because lazy */}
       <span id="cardSearchResult"></span>
-      <p id="cardList">{`${cards.join(",")}`}</p>
+
+      {/* Render strings by joining with ', ' */}
+      <p id="cardList">{cards.join(", ")}</p>
       <br />
       <br />
       <input

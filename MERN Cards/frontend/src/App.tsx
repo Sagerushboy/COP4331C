@@ -1,8 +1,8 @@
 import LoginPage from "./pages/LoginPage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import CardPage from "./pages/CardPage";
-// import "./App.css";
 
+// App is just router full of pages
 function App() {
   return (
     <BrowserRouter>

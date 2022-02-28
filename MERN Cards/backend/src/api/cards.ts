@@ -6,8 +6,8 @@ const router = Router();
 
 router.post("/login", async (req, res) => {
 	const { username } = req.body;
-	// TEMP FOR LOCAL TESTING.
 
+	// only username in user collection of mongodb
 	if (username == "alex") {
 		let data = await User.findOne({ username: "alex" }).exec();
 
@@ -19,7 +19,6 @@ router.post("/login", async (req, res) => {
 
 router.post("/add", async (req, res) => {
 	const { name } = req.body;
-	// TEMP FOR LOCAL TESTING.
 
 	if (name === "") {
 		res.status(400);
@@ -40,27 +39,19 @@ router.post("/add", async (req, res) => {
 });
 
 router.get("/search", async (req, res) => {
-	console.log("Search running")
-	const { name } = req.query;
-	// TEMP FOR LOCAL TESTING.
+	const { name } = req.query; // using query for get request since body is not allowed
 
-	console.log(name);
-
-	if (name == null || name == undefined) return;
+	if (name == null || name == undefined) return; // name could be ""
 
 	let cards = [];
 
 	if (name === "") {
-		console.log("Empty");
 		cards = await Card.find({}).exec();
 	} else {
-		console.log("Not Empty");
 		cards = await Card.find({ name: { "$regex": name, "$options": "i" } }).exec();
 	}
 
-	res.json({
-		cards
-	});
+	res.json({ cards });
 });
 
 export default router;
