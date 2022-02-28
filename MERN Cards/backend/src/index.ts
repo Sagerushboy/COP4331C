@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from 'dotenv';
 import cors from 'cors';
 import { connect, } from "mongoose";
+import cards from './modules/cards';
 
 const env = dotenv.config();
 
@@ -9,6 +10,8 @@ let app = express();
 
 app.use(express.json());
 app.use(cors());
+
+app.use("/cards", cards);
 
 // mongodb+srv://walrushman:<password>@cluster0.zbtiv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
 

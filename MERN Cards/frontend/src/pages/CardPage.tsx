@@ -4,10 +4,10 @@ import CardUI from "../components/CardUI";
 
 export default function CardPage() {
   return (
-    <div>
+    <>
       <PageTitle />
       <LoggedInName />
       <CardUI />
-    </div>
+    </>
   );
 }
