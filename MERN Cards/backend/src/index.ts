@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import { connect, } from "mongoose";
 import cards from './api/cards';
+import User from "./models/User";
 
 const env = dotenv.config();
 
@@ -31,6 +32,19 @@ connect(mongoURI, {
 		console.error(err)
 	});
 
+const addUser = async () => {
+	let res = await User.find({ username: "alex" }).exec();
 
+	if (res.length <= 0) {
+		let newUser = new User({
+			username: "alex",
+			firstName: "alex",
+			lastName: "alex"
+		});
 
+		await newUser.save();
+	}
+}
+
+addUser().catch(() => console.log("Error with adding new temp user"));
 app.listen(8080, () => console.log("Server running on port 8080"));

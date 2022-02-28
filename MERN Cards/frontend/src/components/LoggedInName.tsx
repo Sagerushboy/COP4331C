@@ -1,14 +1,29 @@
+import { useEffect, useState } from "react";
+
 export default function LoggedInName() {
-  // let user = {};
+  const [data, setData] = useState({ firstName: "", lastName: "" });
+
+  useEffect(() => {
+    const info = JSON.parse(localStorage.getItem("data") ?? "");
+    const { firstName, lastName } = info.data;
+
+    setData({
+      firstName,
+      lastName,
+    });
+  }, []);
 
   const doLogout = (event: any) => {
     event.preventDefault();
-    alert("doLogout");
+    localStorage.removeItem("data");
+    window.location.href = "/";
   };
 
   return (
     <div id="loggedInDiv">
-      <span id="userName">Logged In As John Doe </span>
+      <span id="userName">
+        Logged In As {data.firstName} {data.lastName}{" "}
+      </span>
       <br />
       <button
         type="button"

@@ -23,7 +23,8 @@ export default function Login() {
       return;
     }
 
-    delete data.error;
+    console.log(data);
+
     localStorage.setItem("data", JSON.stringify(data));
     window.location.href = "/cards";
   };

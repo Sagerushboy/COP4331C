@@ -1,5 +1,9 @@
 import { useState } from "react";
 
+interface Card {
+  name: String;
+}
+
 export default function CardUI() {
   const [cards, setCards] = useState([]);
   const [searchName, setSearchName] = useState("");
@@ -16,6 +20,8 @@ export default function CardUI() {
       },
       body: JSON.stringify({ name: addName }) as any,
     });
+
+    setAddName("");
   };
 
   const searchCard = async (event: any) => {
@@ -35,7 +41,9 @@ export default function CardUI() {
     });
 
     const data = await resp.json();
-    let results = data.cards;
+    let results = data.cards.map((item: Card) => item.name);
+
+    console.log(data, results);
 
     setCards(results);
 
