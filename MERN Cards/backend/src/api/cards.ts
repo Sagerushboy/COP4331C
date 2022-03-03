@@ -8,8 +8,9 @@ router.post("/login", async (req, res) => {
 	const { username } = req.body;
 
 	// only username in user collection of mongodb
-	if (username == "alex") {
-		let data = await User.findOne({ username: "alex" }).exec();
+	let data = await User.findOne({ username }).exec();
+
+	if (data !== undefined || data !== null) {
 
 		res.status(200).json({ data });
 	} else {
