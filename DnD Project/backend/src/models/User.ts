@@ -1,12 +1,11 @@
 import { Schema, model } from 'mongoose'
 
+// TODO: Update to reflect actual schema
 const UserSchema = new Schema({
 	username: String,
 	password: String,
-	firstName: String,
-	lastName: String,
 })
 
 const User = model('User', UserSchema);
 
-export default User;  // exporting User model for finding and other operations
+export default User; 

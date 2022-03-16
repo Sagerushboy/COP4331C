@@ -6,7 +6,7 @@ export default function Login() {
   const doLogin = async (event: any) => {
     event.preventDefault();
 
-    let resp = await fetch("http://localhost:8080/cards/login", {
+    let resp = await fetch("http://localhost:8080/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

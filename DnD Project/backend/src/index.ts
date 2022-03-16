@@ -2,19 +2,22 @@ import express from "express";
 import dotenv from 'dotenv';
 import cors from 'cors';
 import { connect, } from "mongoose";
-import cards from './api/cards';
 import auth from './api/auth';
-import User from "./models/User";
+import cookieParser from 'cookie-parser';
 
 const env = dotenv.config(); // env variables
 
 let app = express(); // api library
 
+app.use(cookieParser()); // parsing cookie data (refresh token)
 app.use(express.json()); // allow for sending json
-app.use(cors()); // allow for cors
+app.use(express.urlencoded({ extended: true })); // allows for encoded sending
+app.use(cors({
+	origin: true,
+	credentials: true
+}));  // allow for cors and sending credentials
 
 app.use("/auth", auth);
-app.use("/cards", cards); // all routes will be /cards/{route}
 
 const mongoURI: string = `mongodb+srv://${process.env.ADDRESS}`;
 
@@ -31,27 +34,9 @@ connect(mongoURI, {
 	.then(() => console.log("Mongodb connected")) // good
 	.catch((err) => {
 		// bad
-		console.log("Error with db")
-		console.error(err)
+		console.log("Error with db");
+		console.error(err);
 	});
-
-// add alex user if don't exist
-const addUser = async () => {
-	let res = await User.find({ username: "alex" }).exec();
-
-	if (res.length <= 0) {
-		let newUser = new User({
-			username: "alex",
-			firstName: "alex",
-			lastName: "alex"
-		});
-
-		await newUser.save();
-	}
-}
-
-// adding alex user
-addUser().catch(() => console.log("Error with adding new temp user"));
 
 // launching server
 app.listen(8080, () => console.log("Server running on port 8080"));

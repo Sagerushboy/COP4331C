@@ -1,9 +1,9 @@
 import { Router } from "express";
-import User from "../models/User";
 import Card from "../models/Card";
 
 const router = Router();
 
+<<<<<<< Updated upstream
 router.post("/login", async (req, res) => {
 	const { username } = req.body;
 
@@ -18,6 +18,8 @@ router.post("/login", async (req, res) => {
 	}
 });
 
+=======
+>>>>>>> Stashed changes
 router.post("/add", async (req, res) => {
 	const { name } = req.body;
 

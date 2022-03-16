@@ -2,7 +2,8 @@ import { Schema, model } from 'mongoose'
 
 // creates data types for mongodb
 const CardSchema = new Schema({
-	name: String
+	name: String,
+	userId: Number,
 })
 
 const Card = model('Card', CardSchema);
